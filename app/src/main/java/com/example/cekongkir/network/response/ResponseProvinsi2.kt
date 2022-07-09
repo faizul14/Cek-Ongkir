@@ -1,39 +1,42 @@
 package com.example.cekongkir.network.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 data class ResponseProvinsi2(
 
 	@field:SerializedName("rajaongkir")
-	val rajaongkir: Rajaongkir? = null
+	val rajaongkir: Rajaongkir2? = null
 )
 
-data class Rajaongkir(
+data class Rajaongkir2(
 
-	@field:SerializedName("query")
-	val query: List<Any?>? = null,
+//	@field:SerializedName("query")
+//	val query: List<Any?>? = null,
 
 	@field:SerializedName("results")
-	val results: List<ResultsItem?>? = null,
+	val results: List<ResultsItem2>,
 
 	@field:SerializedName("status")
-	val status: Status? = null
+	val status: Status
 )
 
-data class ResultsItem(
+@Parcelize
+data class ResultsItem2(
 
 	@field:SerializedName("province")
-	val province: String? = null,
+	val province: String,
 
 	@field:SerializedName("province_id")
-	val provinceId: String? = null
-)
+	val provinceId: String
+) : Parcelable
 
 data class Status(
 
 	@field:SerializedName("code")
-	val code: Int? = null,
+	val code: Int,
 
 	@field:SerializedName("description")
-	val description: String? = null
+	val description: String
 )

@@ -7,6 +7,22 @@
     android:padding="12dp"
     tools:context=".MainActivity">
 
+<!--    <com.faltenreich.skeletonlayout.SkeletonLayout-->
+<!--        android:id="@+id/skleton"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/rv_provinsi"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            tools:listitem="@layout/card_list_provinsi" />-->
+
+<!--    </com.faltenreich.skeletonlayout.SkeletonLayout>-->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_provinsi"
         android:layout_width="match_parent"

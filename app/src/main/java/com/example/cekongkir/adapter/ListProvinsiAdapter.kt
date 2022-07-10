@@ -1,13 +1,14 @@
 package com.example.cekongkir.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cekongkir.databinding.CardListProvinsiBinding
-import com.example.cekongkir.network.ResultsItem
-import com.example.cekongkir.network.response.ResultsItem2
+import com.example.cekongkir.network.response.ResultsItem
+import com.example.cekongkir.ui.CityActivity
 
 class ListProvinsiAdapter : RecyclerView.Adapter<ListProvinsiAdapter.ViewHolder>() {
 
@@ -21,6 +22,15 @@ class ListProvinsiAdapter : RecyclerView.Adapter<ListProvinsiAdapter.ViewHolder>
             binding.txtProvinsi.setText(data.province.toString())
             binding.cdList.setOnClickListener {
                 Toast.makeText(itemView.context, data.province, Toast.LENGTH_SHORT).show()
+
+                val dataSend = ResultsItem(
+                    data.province,
+                    data.provinceId
+                )
+
+                val move = Intent(itemView.context, CityActivity::class.java)
+                move.putExtra(CityActivity.EXTRA_DATA, dataSend)
+                itemView.context.startActivity(move)
             }
         }
 

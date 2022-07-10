@@ -1,16 +1,11 @@
 package com.example.cekongkir.viewmodel
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.cekongkir.network.ApiConfig
-import com.example.cekongkir.network.Rajaongkir
-import com.example.cekongkir.network.ResultsItem
-import com.example.cekongkir.network.response.Rajaongkir2
 import com.example.cekongkir.network.response.ResponseTest
-import com.example.cekongkir.network.response.ResultsItem2
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

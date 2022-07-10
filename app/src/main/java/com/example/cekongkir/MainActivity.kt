@@ -3,13 +3,11 @@ package com.example.cekongkir
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cekongkir.adapter.ListProvinsiAdapter
 import com.example.cekongkir.databinding.ActivityMainBinding
 import com.example.cekongkir.viewmodel.MainViewModel
-import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -36,6 +34,7 @@ class MainActivity : AppCompatActivity() {
                 binding.progresbar.visibility = View.GONE
             }
         })
+
 
         viewModel.data.observe(this, {data ->
             if (data != null){

@@ -4,10 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cekongkir.adapter.ListProvinsiAdapter
 import com.example.cekongkir.databinding.ActivityMainBinding
 import com.example.cekongkir.viewmodel.MainViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -17,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.simmer.startShimmer()
 
         viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[MainViewModel::class.java]
         adapter = ListProvinsiAdapter()
@@ -28,10 +35,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         viewModel.loading.observe(this, {data ->
-            if (data){
-                binding.progresbar.visibility = View.VISIBLE
-            }else{
-                binding.progresbar.visibility = View.GONE
+            if (!data){
+                showLoading(false)
             }
         })
 
@@ -43,5 +48,36 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        showLoading(true)
+        lifecycleScope.launch(Dispatchers.Default){
+            delay(1500)
+            withContext(Dispatchers.Main){
+                showLoading(false)
+            }
+        }
+    }
+
+    private fun showLoading(loading : Boolean){
+        if (!loading){
+            binding.apply {
+                simmer.apply {
+                    stopShimmer()
+                    visibility = View.GONE
+                }
+                rvProvinsi.visibility = View.VISIBLE
+            }
+        }else{
+            binding.apply {
+                rvProvinsi.visibility = View.GONE
+                simmer.apply {
+                    startShimmer()
+                    visibility = View.VISIBLE
+                }
+            }
+        }
     }
 }

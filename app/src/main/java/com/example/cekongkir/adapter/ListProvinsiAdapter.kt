@@ -20,6 +20,7 @@ class ListProvinsiAdapter : RecyclerView.Adapter<ListProvinsiAdapter.ViewHolder>
     class ViewHolder(private val binding : CardListProvinsiBinding) : RecyclerView.ViewHolder(binding.root) {
         fun onBind(data : com.example.cekongkir.network.response.ResultsItem){
             binding.txtProvinsi.setText(data.province.toString())
+            binding.titleStatus.setText("PROVINSI")
             binding.cdList.setOnClickListener {
                 Toast.makeText(itemView.context, data.province, Toast.LENGTH_SHORT).show()
 

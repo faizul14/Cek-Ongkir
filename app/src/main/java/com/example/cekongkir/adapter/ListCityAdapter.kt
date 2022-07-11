@@ -16,6 +16,7 @@ class ListCityAdapter : RecyclerView.Adapter<ListCityAdapter.CityViewHolder>() {
     class CityViewHolder(private val binding : CardListProvinsiBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data : ResultsItemCity){
             binding.txtProvinsi.setText(data.cityName.toString())
+            binding.titleStatus.setText("KOTA")
         }
 
     }

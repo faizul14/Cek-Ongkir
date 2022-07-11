@@ -2,6 +2,7 @@ package com.example.cekongkir.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +20,10 @@ class CityActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityCityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.title = "KOTA"
+        binding.simmer.startShimmer()
+
+
 
         val data = intent.getParcelableExtra<ResultsItem>(EXTRA_DATA)
         val id = data?.provinceId
@@ -31,6 +36,16 @@ class CityActivity : AppCompatActivity() {
             rvCity.layoutManager = LinearLayoutManager(this@CityActivity)
             rvCity.setHasFixedSize(true)
         }
+
+        viewModel.loading.observe(this, {data->
+            if (!data){
+                binding.apply {
+                    simmer.startShimmer()
+                    simmer.visibility = View.GONE
+                    rvCity.visibility = View.VISIBLE
+                }
+            }
+        })
 
 
         viewModel.data.observe(this, {data->

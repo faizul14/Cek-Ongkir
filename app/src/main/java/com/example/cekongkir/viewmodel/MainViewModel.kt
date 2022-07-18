@@ -1,16 +1,19 @@
 package com.example.cekongkir.viewmodel
 
+import android.content.Context
+import android.provider.UserDictionary.Words.APP_ID
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.cekongkir.BuildConfig
 import com.example.cekongkir.network.ApiConfig
 import com.example.cekongkir.network.response.ResponseTest
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainViewModel : ViewModel() {
+class MainViewModel(private val context: Context) : ViewModel() {
 //    private val _data = MutableLiveData<List<ResultsItem>?>()
 //    val data : LiveData<List<ResultsItem>?> = _data
 
@@ -67,7 +70,8 @@ class MainViewModel : ViewModel() {
 
     fun getAllProvinsi3(){
         _loading.value = true
-        val client = ApiConfig.getApiService().getProvinsi3("005b795c99b91af2272f340850f9f13c")
+        val client = ApiConfig.getApiService(context).getProvinsi3("005b795c99b91af2272f340850f9f13c")
+//        val client = ApiConfig.getApiService().getProvinsi3("${BuildConfig.APP_ID}")
         client.enqueue(object  : Callback<ResponseTest>{
             override fun onResponse(call: Call<ResponseTest>, response: Response<ResponseTest>) {
                 val responseBody = response.body()

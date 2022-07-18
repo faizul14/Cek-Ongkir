@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cekongkir.adapter.ListProvinsiAdapter
 import com.example.cekongkir.databinding.ActivityMainBinding
+import com.example.cekongkir.helper.ViewModelFactory
 import com.example.cekongkir.viewmodel.MainViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.simmer.startShimmer()
 
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[MainViewModel::class.java]
+        viewModel = ViewModelProvider(this, ViewModelFactory(this))[MainViewModel::class.java]
         adapter = ListProvinsiAdapter()
         viewModel.getAllProvinsi3()
 

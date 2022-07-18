@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.cekongkir.R
 import com.example.cekongkir.databinding.ActivityHomeCoactivityBinding
+import com.example.cekongkir.helper.ViewModelFactory
 import com.example.cekongkir.viewmodel.HomeCOViewModel
 import com.google.android.material.snackbar.BaseTransientBottomBar.LENGTH_SHORT
 import com.google.android.material.snackbar.Snackbar
@@ -27,7 +28,7 @@ class HomeCOActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityHomeCoactivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[HomeCOViewModel::class.java]
+        viewModel = ViewModelProvider(this, ViewModelFactory(this))[HomeCOViewModel::class.java]
 
         btn = findViewById(R.id.btn_cek)
         bntMinus = findViewById(R.id.minus)

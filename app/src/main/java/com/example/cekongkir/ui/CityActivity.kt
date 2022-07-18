@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.cekongkir.R
 import com.example.cekongkir.adapter.ListCityAdapter
 import com.example.cekongkir.databinding.ActivityCityBinding
+import com.example.cekongkir.helper.ViewModelFactory
 import com.example.cekongkir.network.response.ResultsItem
 import com.example.cekongkir.viewmodel.CityViewModel
 
@@ -28,7 +29,7 @@ class CityActivity : AppCompatActivity() {
         val data = intent.getParcelableExtra<ResultsItem>(EXTRA_DATA)
         val id = data?.provinceId
 
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[CityViewModel::class.java]
+        viewModel = ViewModelProvider(this, ViewModelFactory(this))[CityViewModel::class.java]
         viewModel.getData(id.toString())
 
         adapter = ListCityAdapter()

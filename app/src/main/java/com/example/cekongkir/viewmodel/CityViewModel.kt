@@ -1,5 +1,6 @@
 package com.example.cekongkir.viewmodel
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,7 +12,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CityViewModel : ViewModel() {
+class CityViewModel(private val context: Context) : ViewModel() {
     private val _data = MutableLiveData<List<ResultsItemCity>>()
     val data : LiveData<List<ResultsItemCity>> = _data
 
@@ -21,7 +22,7 @@ class CityViewModel : ViewModel() {
 
     fun getData(id : String){
         _loading.value = true
-        val client = ApiConfig.getApiService().getCity("005b795c99b91af2272f340850f9f13c" , id)
+        val client = ApiConfig.getApiService(context).getCity("005b795c99b91af2272f340850f9f13c" , id)
         client.enqueue(object : Callback<ResponseCity>{
             override fun onResponse(call: Call<ResponseCity>, response: Response<ResponseCity>) {
                 val responseBody = response.body()

@@ -12,13 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CekOngkir">
         <activity
+            android:name=".ui.HomeCOActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".ui.CityActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.HomeCOActivity"
+            android:name=".ui.SplashScreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
